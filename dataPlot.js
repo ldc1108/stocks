@@ -1,19 +1,19 @@
 /** 
  * Version 1.1, Jan 2012
  */
-var Markit = {};
+var MarkitTime = {};
 /**
  * Define the TimeseriesService.
  * First argument is symbol (string) for the quote. Examples: AAPL, MSFT, JNJ, GOOG.
  * Second argument is duration (int) for how many days of history to retrieve.
  */
-Markit.TimeseriesService = function(symbol,duration){
+MarkitTime.TimeseriesService = function(symbol,duration){
     this.symbol = symbol;
     this.duration = duration;
     this.PlotChart();
 };
 
-Markit.TimeseriesService.prototype.PlotChart = function(){
+MarkitTime.TimeseriesService.prototype.PlotChart = function(){
     
     //Make JSON request for timeseries data
     $.ajax({
@@ -41,7 +41,7 @@ Markit.TimeseriesService.prototype.PlotChart = function(){
     });
 };
 
-Markit.TimeseriesService.prototype.BuildDataAndChart = function(json){
+MarkitTime.TimeseriesService.prototype.BuildDataAndChart = function(json){
     var dateDS = json.Data.SeriesDates,
         closeDS = json.Data.Series.close.values,
         openDS = json.Data.Series.open.values,
@@ -69,7 +69,7 @@ Markit.TimeseriesService.prototype.BuildDataAndChart = function(json){
 };
 
 //Define the HighCharts options
-Markit.TimeseriesService.prototype.oChartOptions = {
+MarkitTime.TimeseriesService.prototype.oChartOptions = {
 	chart: {
 		renderTo: 'chartDemoContainer'
 	},
@@ -130,8 +130,6 @@ Markit.TimeseriesService.prototype.oChartOptions = {
 	}]
 	//,credits:{ enabled:false },
 };
-
-new Markit.TimeseriesService("GOOG", 365);
 
 /**
 * Need help? Visit the API documentation at:

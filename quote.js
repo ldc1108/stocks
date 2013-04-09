@@ -13,6 +13,7 @@ $(document).ready(function() {
 					return;
 				}
 				this.success(jsonResult);
+				new MarkitTime.TimeseriesService(tick, 365);
 			});					
 		});
 		// Auto Complete
