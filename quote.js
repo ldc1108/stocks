@@ -3,6 +3,7 @@ $(document).ready(function() {
 		// When the form is submitted:
 		$("form").submit(function(e) {
 			e.preventDefault();
+			$("#data").append('<li><div id="table"></div><div id="chartDemoContainer" style="width:100%; height:400px;"></div></li>')
 			var tick = $("input").val();
 			new Markit.QuoteService(tick, function(jsonResult) {
 				this.clearResult();
@@ -12,6 +13,7 @@ $(document).ready(function() {
 					this.renderAlert(jsonResult);
 					return;
 				}
+				
 				this.success(jsonResult);
 				new MarkitTime.TimeseriesService(tick, 365);
 			});					
@@ -58,7 +60,7 @@ $(document).ready(function() {
 	Markit.QuoteService.prototype.clearResult = function(){
 		//$("p").text("clearResult");
 		this.resetForm();
-		$("#resultContainer").remove();
+		//$("#resultContainer").remove();
 		$("div.alert").remove();
 	};
 
@@ -77,7 +79,7 @@ $(document).ready(function() {
 		$container.append("<h3>"+jsonResult.Data.Name+" ("+jsonResult.Data.Symbol+")</h3>");
 		$container.append(this.renderResultTable(jsonResult));
 
-		$("form").after($container);
+		$("#table").last().append($container);
 		this.resetForm();
 	};
 

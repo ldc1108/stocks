@@ -71,7 +71,7 @@ MarkitTime.TimeseriesService.prototype.BuildDataAndChart = function(json){
 //Define the HighCharts options
 MarkitTime.TimeseriesService.prototype.oChartOptions = {
 	chart: {
-		renderTo: 'chartDemoContainer'
+		renderTo: ($("#chartDemoContainer").last());
 	},
 	title:{},
 	subtitle: {
